@@ -43,7 +43,7 @@ const OtherDevicesSection = ({
   onSelectDevice,
   excludeId,
 }: {
-  devices: [];
+  devices: Device[];
   onSelectDevice: (device: Device) => void;
   excludeId?: string;
 }) => {

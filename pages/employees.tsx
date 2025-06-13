@@ -60,9 +60,9 @@ export default function Employees() {
 
   const [currentImage, setCurrentImage] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [recommendedDevice, setRecommendedDevice] = useState<Device | null>(
-    null
-  );
+  const [recommendedDevice, setRecommendedDevice] = useState<
+    Device | undefined
+  >(undefined);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("oau");

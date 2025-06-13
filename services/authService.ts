@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { FetchResponse } from "./deviceService";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000/api";
@@ -57,36 +58,22 @@ interface RegisterRequest {
   officeLocation: string;
 }
 
-interface SendOtpRequest {
-  email: string;
-}
-
-interface SignOutRequest {
-  token: string;
-}
-
-interface ConfirmOtpRequest {
-  email: string;
-  otp: string;
-  type: "ONBOARDING" | "PASSWORD";
+interface RegisterResponse {
+  status: number;
+  message: string;
+  data: {
+    user: {
+      id: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+    };
+  };
 }
 
 interface ChangePasswordRequest {
   email: string;
   Password: string;
-}
-
-interface UpdateUserRequest {
-  userId: string;
-  firstName?: string;
-  lastName?: string;
-  phoneNumber?: string;
-  officeLocation?: string;
-}
-
-interface UpdateUserAvatarRequest {
-  userId: string;
-  avatar: string;
 }
 
 interface ApiError {
@@ -106,7 +93,7 @@ const api = axios.create({
 const handleError = (error: AxiosError): ApiError => {
   if (error.response) {
     return {
-      message: error.response.data?.message || "An error occurred",
+      message: "An error occurred",
       status: error.response.status,
     };
   }
@@ -120,11 +107,14 @@ const authService = {
    * @param email - email address
    * @returns Promise with success message
    */
-  checkEmailAvailability: async (email: string): Promise<any> => {
+  checkEmailAvailability: async (email: string): Promise<FetchResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.post("/check-email", {
-        email,
-      });
+      const response: AxiosResponse<FetchResponse> = await api.post(
+        "/check-email",
+        {
+          email,
+        }
+      );
       return response.data;
     } catch (error) {
       throw handleError(error as AxiosError);
@@ -155,9 +145,9 @@ const authService = {
    * @param userData
    * @returns Promise with user data and token
    */
-  register: async (userData: RegisterRequest): Promise<any> => {
+  register: async (userData: RegisterRequest): Promise<RegisterResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.post(
+      const response: AxiosResponse<RegisterResponse> = await api.post(
         "/users/register/user",
         userData
       );
@@ -172,9 +162,9 @@ const authService = {
    * @param email - user's email address
    * @returns Promise with success message
    */
-  initiatePasswordReset: async (email: string): Promise<any> => {
+  initiatePasswordReset: async (email: string): Promise<FetchResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.post(
+      const response: AxiosResponse<FetchResponse> = await api.post(
         "/users/password/initiate-reset",
         { email }
       );
@@ -189,11 +179,14 @@ const authService = {
    * @param otpData - email and OTP code
    * @returns Promise with token for password change
    */
-  resendOtp: async (email: string): Promise<any> => {
+  resendOtp: async (email: string): Promise<FetchResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.post("/users/otp/send", {
-        email,
-      });
+      const response: AxiosResponse<FetchResponse> = await api.post(
+        "/users/otp/send",
+        {
+          email,
+        }
+      );
       return response.data;
     } catch (error) {
       throw handleError(error as AxiosError);
@@ -209,9 +202,9 @@ const authService = {
     email: string,
     otp: string,
     type: string
-  ): Promise<any> => {
+  ): Promise<FetchResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.put(
+      const response: AxiosResponse<FetchResponse> = await api.put(
         "/users/otp/verification",
         { email, otp, type }
       );
@@ -226,9 +219,11 @@ const authService = {
    * @param passwordData - email and new password
    * @returns Promise with success message
    */
-  changePassword: async (passwordData: ChangePasswordRequest): Promise<any> => {
+  changePassword: async (
+    passwordData: ChangePasswordRequest
+  ): Promise<FetchResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.put(
+      const response: AxiosResponse<FetchResponse> = await api.put(
         "/users/password/change",
         passwordData
       );
@@ -243,9 +238,11 @@ const authService = {
    * @param token
    * @returns Promise with success message
    */
-  signOut: async (): Promise<any> => {
+  signOut: async (): Promise<FetchResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.get("/users/logout");
+      const response: AxiosResponse<FetchResponse> = await api.get(
+        "/users/logout"
+      );
       return response.data;
     } catch (error) {
       throw handleError(error as AxiosError);

@@ -1,6 +1,11 @@
 import { AxiosError, AxiosResponse } from "axios";
 import api from "./api";
 
+export interface FetchResponse {
+  status: number;
+  message: string;
+}
+
 export interface FetchDeviceResponse {
   status: number;
   message: string;
@@ -56,7 +61,7 @@ interface ApiError {
 const handleError = (error: AxiosError): ApiError => {
   if (error.response) {
     return {
-      message: error.response.data?.message || "An error occurred",
+      message: "An error occurred",
       status: error.response.status,
     };
   }
