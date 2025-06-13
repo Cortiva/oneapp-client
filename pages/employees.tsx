@@ -851,7 +851,12 @@ export default function Employees() {
   );
 }
 
-const Detail = ({ label, value }) => (
+type DetailProps = {
+  label: string;
+  value: string | number;
+};
+
+const Detail = ({ label, value }: DetailProps) => (
   <div className="flex flex-col">
     <span className="text-gray-500 dark:text-gray-300 font-medium">
       {label}

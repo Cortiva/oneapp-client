@@ -42,16 +42,16 @@ export interface Employee {
 export interface EmployeeDevice {
   id: string;
   device: Device;
-  assignedOn?: any;
+  assignedOn?: Date;
   assignedBy: User;
-  retrievedOn?: any;
+  retrievedOn?: Date;
   remark?: string;
 }
 
 interface AssignDeviceRequest {
   employeeId?: string;
   deviceId?: string;
-  assignedOn?: any;
+  assignedOn?: Date;
   assignedById?: string;
   remark?: string;
 }
@@ -77,7 +77,7 @@ interface ApiError {
 const handleError = (error: AxiosError): ApiError => {
   if (error.response) {
     return {
-      message: error.response.data?.message || "An error occurred",
+      message: "An error occurred",
       status: error.response.status,
     };
   }
@@ -132,9 +132,9 @@ const employeeService = {
    */
   assignDeviceToEmployee: async (
     credentials: AssignDeviceRequest
-  ): Promise<any> => {
+  ): Promise<FetchEmployeeResponse> => {
     try {
-      const response: AxiosResponse<any> = await api.post(
+      const response: AxiosResponse<FetchEmployeeResponse> = await api.post(
         `/employee/devices/assign`,
         credentials
       );
