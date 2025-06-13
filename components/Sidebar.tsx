@@ -10,7 +10,6 @@ import {
   Laptop2,
   LayoutDashboard,
   LogOut,
-  Users,
   Users2,
 } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -68,9 +67,9 @@ const Sidebar = ({ isShrunk, setIsShrunk }: SidebarProps) => {
       } else {
         // toast.error(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "Failed to check email");
+      // toast.error(error.message || "Failed to check email");
     } finally {
       setIsProcessing(false);
     }

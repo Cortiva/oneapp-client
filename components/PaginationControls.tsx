@@ -4,13 +4,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Text from "./Text";
 
 type Props = {
-  type: any;
+  type: string;
   currentPage: number;
   totalPages: number;
-  handlePreviousClick: (type: any) => void;
-  handleNextClick: (type: any) => void;
+  handlePreviousClick: (type: string) => void;
+  handleNextClick: (type: string) => void;
   renderPages: (
-    type: any,
+    type: string,
     currentPage: number,
     totalPages: number
   ) => React.ReactNode;
