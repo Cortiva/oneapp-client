@@ -1,12 +1,13 @@
 import React from "react";
 import Text from "./Text";
+import { Device } from "@/services/deviceService";
 
 const DeviceCard = ({
   device,
   onSelect,
 }: {
-  device: any;
-  onSelect: (device: any) => void;
+  device: Device;
+  onSelect: (device: Device) => void;
 }) => {
   return (
     <div className="rounded-2xl bg-light-bg dark:bg-dark-bg shadow-md hover:shadow-lg transition duration-300 overflow-hidden flex flex-col">
@@ -42,8 +43,8 @@ const OtherDevicesSection = ({
   onSelectDevice,
   excludeId,
 }: {
-  devices: any[];
-  onSelectDevice: (device: any) => void;
+  devices: [];
+  onSelectDevice: (device: Device) => void;
   excludeId?: string;
 }) => {
   const filteredDevices = devices.filter((d) => d.id !== excludeId);
