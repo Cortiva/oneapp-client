@@ -205,9 +205,9 @@ export default function Employees() {
       } else {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
+      // toast.error(error.message || "failed to create account");
     } finally {
       setIsProcessing(false);
     }
@@ -320,7 +320,7 @@ export default function Employees() {
 
     console.log("CHOSEN :::::: ", item);
 
-    const recommended: any =
+    const recommended =
       devices.find(
         (d) =>
           d.status === "AVAILABLE" &&
@@ -398,9 +398,9 @@ export default function Employees() {
       } else {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
+      // toast.error(error.message || "failed to create account");
     } finally {
       setIsProcessing(false);
     }
@@ -787,7 +787,7 @@ export default function Employees() {
                     <strong>Storage:</strong> {recommendedDevice?.storage}GB
                   </p>
                   <p>
-                    <strong>Screen:</strong> {recommendedDevice?.screenSize}"
+                    <strong>Screen:</strong> {recommendedDevice?.screenSize}
                   </p>
                   <p>
                     <strong>Location:</strong> {recommendedDevice?.location}
@@ -839,7 +839,7 @@ export default function Employees() {
           </div>
 
           <OtherDevicesSection
-            devices={devices}
+            devices={filteredDevices}
             excludeId={recommendedDevice?.id}
             onSelectDevice={(device) => setRecommendedDevice(device)}
           />

@@ -17,10 +17,6 @@ export default function Login() {
   const [username, setUsername] = useState("IT Manager");
   const router = useRouter();
 
-  const goTo = (page: string) => {
-    router.push(page);
-  };
-
   const handleLogin = async () => {
     setIsProcessing(true);
 
@@ -45,9 +41,9 @@ export default function Login() {
       } else {
         toast.error("Login failed");
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "Login failed");
+      // toast.error(error.message || "Login failed");
     } finally {
       setIsProcessing(false);
     }

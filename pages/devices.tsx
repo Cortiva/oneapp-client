@@ -45,7 +45,6 @@ export default function Devices() {
   const [openModal, setOpenModal] = useState(false);
   const [isUpdatingImages, setIsUpdatingImages] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
   const [showDevice, setShowDevice] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [errors, setErrors] = useState({
@@ -182,9 +181,9 @@ export default function Devices() {
       } else {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
+      // toast.error(error.message || "failed to create account");
     } finally {
       setIsProcessing(false);
     }
@@ -211,7 +210,6 @@ export default function Devices() {
 
   const handleInitiateDeviceDelete = (item: Device) => {
     setDevice(item);
-    setIsDeleting(true);
     setOpenModal(true);
   };
 
@@ -244,9 +242,9 @@ export default function Devices() {
       } else {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
+      // toast.error(error.message || "failed to create account");
     } finally {
       setIsProcessing(false);
     }
@@ -270,9 +268,9 @@ export default function Devices() {
       } else {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
+      // toast.error(error.message || "failed to create account");
     } finally {
       setIsProcessing(false);
     }
@@ -309,9 +307,9 @@ export default function Devices() {
       } else {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
+      // toast.error(error.message || "failed to create account");
     } finally {
       setIsProcessing(false);
     }
@@ -333,35 +331,8 @@ export default function Devices() {
     setCurrentStep(1);
     setProgress(50);
     setDevice(null);
-    setIsDeleting(false);
     setIsUpdating(false);
     setIsOpen(false);
-  };
-
-  // Submit device Units update request
-  const handleUpdateDeviceUnits = async () => {
-    setIsProcessing(true);
-
-    try {
-      const id = device?.id;
-      const units = parseInt(totalUnits);
-      const response = await deviceService.updateDeviceUnits(id!, units);
-
-      console.log(response);
-
-      if (response.status === 201) {
-        toast.success(response.message);
-        fetchDevices();
-        handleResetForm();
-      } else {
-        toast.success(response.message);
-      }
-    } catch (error: any) {
-      console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
-    } finally {
-      setIsProcessing(false);
-    }
   };
 
   const handleImageChange = (urls: string[]) => {

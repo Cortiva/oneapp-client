@@ -111,9 +111,9 @@ export default function Register() {
           setIsEmailAvailable(false);
         }
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "Failed to check email");
+      // toast.error(error.message || "Failed to check email");
     } finally {
       setIsValidating(false);
     }
@@ -144,9 +144,9 @@ export default function Register() {
       } else {
         toast.success(response.message);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to create account");
+      // toast.error(error.message || "failed to create account");
     } finally {
       setIsProcessing(false);
     }
@@ -168,9 +168,9 @@ export default function Register() {
       } else {
         toast.error("Failed to resend OTP");
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "failed to resend OTP");
+      // toast.error(error.message || "failed to resend OTP");
     } finally {
       setIsValidating(false);
     }
@@ -196,9 +196,9 @@ export default function Register() {
           toast.success(response.message);
         }
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log("error :::: ", error);
-      toast.error(error.message || "Failed to confirm account");
+      // toast.error(error.message || "Failed to confirm account");
     } finally {
       setIsProcessing(false);
     }
