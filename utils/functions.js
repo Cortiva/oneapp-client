@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
 
-const secretKey = process.env.SECRET_KEY || "";
+const secretKey = process.env.NEXT_PUBLIC_API_SECRET_KEY || "";
 
 export const formatNumberN = (number, decimals = 0) => {
   const num = Number(number);
