@@ -47,7 +47,7 @@ const OtherDevicesSection = ({
   onSelectDevice: (device: Device) => void;
   excludeId?: string;
 }) => {
-  const filteredDevices = devices.filter((d) => d.id !== excludeId);
+  const filteredDevices = devices.filter((d: Device) => d.id !== excludeId);
 
   return (
     <section className="mt-10 px-4">
@@ -55,7 +55,7 @@ const OtherDevicesSection = ({
         More Devices to Pick From
       </h2>
       <div className="grid gap-5 grid-cols-1 sm:grid-cols-2">
-        {filteredDevices.map((device) => (
+        {filteredDevices.map((device: Device) => (
           <DeviceCard
             key={device.id}
             device={device}
