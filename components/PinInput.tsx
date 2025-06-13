@@ -62,7 +62,9 @@ const PinInput: React.FC<PinInputProps> = ({ length = 6, onComplete }) => {
             onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleBackspace(e, index)}
             onFocus={handleFocus}
-            ref={(el) => (inputsRef.current[index] = el)}
+            ref={(el) => {
+              inputsRef.current[index] = el;
+            }}
             className="p-4 rounded-lg text-lg bg-light-bg dark:bg-dark-bg shadow transition-all duration-200 focus:shadow-md text-center"
             style={{ width: "60px", height: "60px", fontSize: "30px" }}
           />
