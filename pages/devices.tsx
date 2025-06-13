@@ -740,15 +740,15 @@ export default function Devices() {
           </div>
 
           <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-            <Detail label="Model" value={device!.model} />
-            <Detail label="Manufacturer" value={device!.manufacturer} />
-            <Detail label="Location" value={device!.location} />
-            <Detail label="Processor" value={device!.processor} />
-            <Detail label="RAM" value={`${device!.ram} GB`} />
-            <Detail label="Storage" value={`${device!.storage} GB`} />
-            <Detail label="Screen Size" value={`${device!.screenSize}\"`} />
-            <Detail label="Units Available" value={device!.totalUnits} />
-            <Detail label="Status" value={device!.status} />
+            <Detail label="Model" value={`${device?.model}`} />
+            <Detail label="Manufacturer" value={`${device?.manufacturer}`} />
+            <Detail label="Location" value={`${device?.location}`} />
+            <Detail label="Processor" value={`${device?.processor}`} />
+            <Detail label="RAM" value={`${device?.ram} GB`} />
+            <Detail label="Storage" value={`${device?.storage} GB`} />
+            <Detail label="Screen Size" value={`${device?.screenSize}\"`} />
+            <Detail label="Units Available" value={`${device?.totalUnits}`} />
+            <Detail label="Status" value={`${device?.status}`} />
           </div>
         </div>
       </ModalSide>
@@ -758,7 +758,7 @@ export default function Devices() {
 
 type DetailProps = {
   label: string;
-  value: string | number;
+  value: string;
 };
 
 const Detail = ({ label, value }: DetailProps) => (
