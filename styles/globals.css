@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary-50: #E6F7FA;
+  --color-primary-300: #4DCCE6;
+  --color-primary-400: #00B4D8;
+  --color-primary: #0097B2;
+  --color-primary-600: #007A96;
+  --color-primary-800: #004D5C;
+
+  --color-secondary-50: #FFF0EB;
+  --color-secondary-300: #FFB08D;
+  --color-secondary-400: #FF8A65;
+  --color-secondary: #FF6D3D;
+  --color-secondary-600: #E64C1E;
+  --color-secondary-800: #992D0D;
+
+  --color-success-50: #E6F7EB;
+  --color-success-300: #6EE7B7;
+  --color-success-400: #34D399;
+  --color-success: #16A34A;
+  --color-success-600: #059669;
+  --color-success-800: #065F46;
+
+  --color-warning-50: #FEF3E6;
+  --color-warning-300: #FDBA74;
+  --color-warning-400: #FB923C;
+  --color-warning: #F97316;
+  --color-warning-600: #EA580C;
+  --color-warning-800: #9A3412;
+
+  --color-error-50: #FBEAE9;
+  --color-error-300: #F28D89;
+  --color-error-400: #E75A55;
+  --color-error: #DC362E;
+  --color-error-600: #C22B23;
+  --color-error-800: #7A1C18;
+
+  --color-light-bg: #F8FAFC;
+  --color-light-card: #FFFFFF;
+
+  --color-dark-bg: #0D1117;
+  --color-dark-card: #161B22;
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+.animate-spin-normal {
+  animation: spin 2s linear infinite;
+}
+
+.animate-spin-fast {
+  animation: spin 1s linear infinite;
+}
