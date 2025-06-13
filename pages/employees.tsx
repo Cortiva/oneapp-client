@@ -656,18 +656,19 @@ export default function Employees() {
       >
         {employee && (
           <>
-            <div className="flex flex-col space-y-2 mb-6">
-              <div className="grid grid-cols-2 gap-5">
-                <div className="col-span-2 md:col-span-1">
+            <div className="flex flex-col space-y-8 mb-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
+                <div className="flex justify-center">
                   <Image
                     src={employee?.avatar}
-                    alt="User"
-                    width={400}
-                    height={400}
-                    className="object-contain"
+                    alt="User Avatar"
+                    width={300}
+                    height={300}
+                    className="object-cover rounded-full shadow-lg border border-gray-300 dark:border-gray-700"
                   />
                 </div>
-                <div className="col-span-2 md:col-span-1">
+
+                <div className="grid grid-cols-1 gap-4">
                   <Detail label="Email" value={employee?.email} />
                   <Detail label="First Name" value={employee?.firstName} />
                   <Detail label="Last Name" value={employee?.lastName} />
@@ -677,53 +678,48 @@ export default function Employees() {
                   />
                   <Detail
                     label="Onboarded On"
-                    value={`${employee?.onboardingDate} `}
+                    value={employee?.onboardingDate}
                   />
-                  <Detail label="Staff ID" value={`${employee?.staffId}`} />
+                  <Detail label="Staff ID" value={employee?.staffId} />
                 </div>
               </div>
 
-              {employee.devices.map((item, index) => (
-                <div key={index}>
-                  <div className="grid grid-cols-1 gap-5">
-                    <div className="col-span-2 md:col-span-1">
-                      <Detail
-                        label="Device Model"
-                        value={`${item.device.model}`}
-                      />
-                    </div>
-                    <div className="col-span-2 md:col-span-1">
-                      <Detail
-                        label="Device Manufacturer"
-                        value={`${item.device.manufacturer}`}
-                      />
-                    </div>
-                    <div className="col-span-2 md:col-span-1">
-                      <Detail
-                        label="Device Processor"
-                        value={`${item.device.processor}`}
-                      />
-                    </div>
-                    <div className="col-span-2 md:col-span-1">
-                      <Detail
-                        label="Device Storage"
-                        value={`${item.device.storage}`}
-                      />
-                      <Detail label="Device RAM" value={`${item.device.ram}`} />
-                    </div>
-                  </div>
+              <div className="space-y-6">
+                <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+                  Assigned Devices
+                </h2>
 
-                  {item.device.images.map((image, index) => (
-                    <div key={index} className="flex flex-row space-x-5">
-                      <img
-                        src={image}
-                        alt={`img`}
-                        className="h-[220px] w-[220px] object-cover rounded shadow"
+                {employee.devices.map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md space-y-4"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      <Detail label="Model" value={item.device.model} />
+                      <Detail
+                        label="Manufacturer"
+                        value={item.device.manufacturer}
                       />
+                      <Detail label="Processor" value={item.device.processor} />
+                      <Detail label="Storage" value={item.device.storage} />
+                      <Detail label="RAM" value={item.device.ram} />
                     </div>
-                  ))}
-                </div>
-              ))}
+
+                    {item.device.images.length > 0 && (
+                      <div className="flex flex-wrap gap-4 mt-4">
+                        {item.device.images.map((image, imgIndex) => (
+                          <img
+                            key={imgIndex}
+                            src={image}
+                            alt={`Device Image ${imgIndex + 1}`}
+                            className="h-40 w-40 object-cover rounded shadow"
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </>
         )}
